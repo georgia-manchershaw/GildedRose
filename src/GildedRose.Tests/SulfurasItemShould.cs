@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using GildedRose.Console;
@@ -31,10 +32,16 @@ namespace GildedRose.Tests
             //assert
             Assert.Equal(80, sulfurasItem.Quality);
         }
-    }
 
-    public class SulfurasItem : Item
-    {
+     
+        [Fact]
+        public void NotChangeItsQuality()
+        {
+            var sulfurasItem = new SulfurasItem { Name = "Sulfuras, Hand of Ragnaros", SellIn = 0, Quality = 79 };
 
+            sulfurasItem.UpdateQuality();
+
+            Assert.Equal(80, sulfurasItem.Quality);
+        }
     }
 }
