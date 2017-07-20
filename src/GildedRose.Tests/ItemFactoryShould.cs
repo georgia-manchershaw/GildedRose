@@ -38,20 +38,4 @@ namespace GildedRose.Tests
             Assert.Equal(expected, actual);
         }
     }
-
-    public class ItemFactory
-    {
-        public Item CreateItem(string itemName, int sellIn, int quality)
-        {
-
-            if (itemName == "Sulfuras, Hand of Ragnaros")
-            {
-                return new SulfurasItem { Name = itemName, SellIn = sellIn, Quality = quality };
-            }
-            else
-            { 
-                return new Item { Name = itemName, SellIn = sellIn, Quality = quality };
-            }
-        }
-    }
 }
