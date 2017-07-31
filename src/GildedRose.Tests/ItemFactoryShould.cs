@@ -37,5 +37,19 @@ namespace GildedRose.Tests
             // Assert
             Assert.Equal(expected, actual);
         }
+
+        [Fact]
+        public void CreateBackstagePassItem()
+        {
+            // Arrange
+            var expected = new BackstagePassItem {Name = "Backstage passes to a TAFKAL80ETC concert", SellIn = 14, Quality = 21 };
+
+            // Act
+            var factory = new ItemFactory();
+            var actual = factory.CreateItem("Backstage passes to a TAFKAL80ETC concert", 14, 21);
+
+            // Assert
+            Assert.Equal(expected, actual);
+        }
     }
 }

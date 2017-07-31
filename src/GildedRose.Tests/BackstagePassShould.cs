@@ -49,24 +49,38 @@ namespace GildedRose.Tests
             // Assert
             Assert.Equal(0, actual.Quality);
         }
-    }
 
-    public class BackstagePassItem : Item
-    {
-        public override void UpdateQuality()
+        [Fact]
+        public void IncreaseQualityByOneWhenSellInGreaterThanTen()
         {
-            if (SellIn > 5 && SellIn <= 10)
-            {
-                Quality = Quality + 2;
-            }
-            if (SellIn > 0 && SellIn <= 5)
-            {
-                Quality = Quality + 3;
-            }
-            if (SellIn == 0)
-            {
-                Quality = 0;
-            }
+            // Arrange
+            var actual = new BackstagePassItem { Name = "Backstage passes to a TAFKAL80ETC concert", SellIn = 12, Quality = 2 };
+
+            // Act
+            actual.UpdateQuality();
+
+            // Assert
+            Assert.Equal(3, actual.Quality);
         }
-    }   
+
+        [Fact]
+        public void DecreaseSellInByOneWhenQualityIsUpdated()
+        {
+            var actual = new BackstagePassItem { Name = "Backstage passes to a TAFKAL80ETC concert", SellIn = 12, Quality = 2 };
+
+            actual.UpdateQuality();
+
+            Assert.Equal(11, actual.SellIn);
+        }
+
+        [Fact]
+        public void NotChangeSellInWhenSellInEqualsZero()
+        {
+            var actual = new BackstagePassItem { Name = "Backstage passes to a TAFKAL80ETC concert", SellIn = 0, Quality = 2 };
+
+            actual.UpdateQuality();
+
+            Assert.Equal(0, actual.SellIn);
+        }
+    }
 }
